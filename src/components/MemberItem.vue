@@ -2,6 +2,7 @@
   <div class="member__item"
     :style="{'background-image':'url('+member.picture+')'}">
     <input type="checkbox"
+      v-if="!readonly"
       @change="toggleMember"
       v-model="added" />
     <h3 class="member__name">{{member.name}}</h3>
@@ -12,7 +13,8 @@
 <script>
   export default {
     props: {
-      member: Object
+      member: Object,
+      readonly: Boolean
     },
     data () {
       return {
@@ -35,5 +37,6 @@
     width: calc(25% - 1em);
     margin: 0 1em 1em 0;
     padding: 1em;
+    transition: all 1s;
   }
 </style>

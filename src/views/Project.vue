@@ -1,23 +1,22 @@
 <template>
   <main class="">
     <page-header v-cloak
-      :header-title="'project:|'+activeProject.name || ''">
+      :header-title="'project:|'+activeProject.name">
       {{activeProject.description}}
     </page-header>
-    {{activeProject}}
-
+    <member-list :list="activeProject.team"/>
   </main>
 </template>
 
 <script>
   import { mapGetters } from 'vuex';
   import { mapActions } from 'vuex';
-  import ActionButton from '@/components/ActionButton'
   import MemberList from '@/components/MemberList'
   import PageHeader from '@/components/PageHeader'
   export default {
     name: 'newProject',
     components: {
+      MemberList,
       PageHeader
     },
     computed: {

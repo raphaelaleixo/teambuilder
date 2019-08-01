@@ -3,7 +3,6 @@
     <page-header header-title="New Project">
       If you have a digital project in mind, we would be happy to have a chat about how we can help make that happen.
     </page-header>
-    {{project.url}}
     <form @submit.prevent="saveProject"
       class="form wrapper">
       <div class="form__item">
@@ -73,42 +72,12 @@
       },
       async saveProject () {
         await this.addProject(this.project);
-        this.$router.push('project/' + this.project.url);
+        this.$router.push('/project/' + this.project.url);
       }
     },
   }
 </script>
 
 <style lang="scss">
-  .form__item {
-    position: relative;
-    margin: 0 0 1em;
-  }
 
-  .form__input {
-    display: block;
-    width: 75ch;
-    padding: 1.5em;
-    font-family: var(--text-font);
-    font-size: 1em;
-    border: none;
-    background: var(--light-gray);
-    resize: vertical;
-  }
-
-  .form__label {
-    font-family: var(--title-font);
-    text-transform: uppercase;
-    position: absolute;
-    font-size: 1em;
-    top: 1.35rem;
-    left: 1.5rem;
-    transform-origin: 0 0;
-    transition: transform 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    .form__input:focus + &,
-    .form__input:valid + & {
-      color: var(--blue);
-      transform: scale(0.75) translateY(-1.25em);
-    }
-  }
 </style>

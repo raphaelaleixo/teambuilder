@@ -27,16 +27,4 @@
 </script>
 
 <style lang="scss">
-  .header__title {
-    font-family: var(--title-font);
-    text-transform: uppercase;
-    font-size: 4em;
-    letter-spacing: -1px;
-    line-height: 1;
-    margin: 1em 0 0;
-  }
-  .header__highlight {
-    display: block;
-    color: var(--green);
-  }
 </style>

@@ -23,7 +23,7 @@
   body {
     font: normal 16px/1.6 var(--text-font);
     margin: 0;
-    padding: 0 2em 5em;
+    padding: 0 2em 15em;
   }
   p {
     max-width: 75ch;
@@ -32,14 +32,15 @@
     margin: 0 auto;
     max-width: 65em;
   }
-    .form__item {
+  .form__item {
     position: relative;
     margin: 0 0 1em;
   }
 
   .form__input {
     display: block;
-    width: 75ch;
+    width: 100%;
+    max-width: 75ch;
     padding: 1.5em;
     font-family: var(--text-font);
     font-size: 1em;
@@ -60,7 +61,7 @@
     .form__input:focus + &,
     .form__input:valid + & {
       color: var(--blue);
-      transform: scale(0.75) translateY(-1.25em);
+      transform: scale(0.65) translateY(-1.45em);
     }
   }
 </style>

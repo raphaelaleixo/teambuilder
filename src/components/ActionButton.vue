@@ -26,6 +26,7 @@
     text-decoration: none;
     position: relative;
     padding-right: 1em;
+    text-align: left;
     &:after {
       content: "";
       display: inline-block;

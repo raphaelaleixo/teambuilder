@@ -188,6 +188,7 @@
     height: 50vh;
     width: 50vw;
     max-width: 75ch;
+    min-width: 19em;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -215,6 +216,8 @@
     font-size: 2em;
     font-family: var(--title-font);
     text-transform: uppercase;
+    line-height: 1;
+    padding-right: 5rem;
   }
 
   .bio__meta {

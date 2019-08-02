@@ -15,6 +15,24 @@
     <div class="member__info">
       <h3 class="member__name">{{member.name}}</h3>
       <p class="member__jobtitle">{{member.jobtitle}}</p>
+      <a class="member__open-bio"
+        href="#"
+        @click.prevent="showBio">show bio</a>
+    </div>
+    <div class="member__bio bio"
+      @keyup.esc="hideBio"
+      :class="{'bio--show':bio}">
+      <div class="bio__wrapper">
+        <a href="#"
+          class="bio__close"
+          @click.prevent="hideBio">close</a>
+        <h3 class="bio__name">{{member.name}}</h3>
+        <p class="bio__meta">{{member.jobtitle}}</p>
+        <p class="bio__meta">{{member.phone}}</p>
+        <p class="bio__meta">{{member.email}}</p>
+        <p class="bio__info"
+          v-html="member.bio"></p>
+      </div>
     </div>
   </div>
 </template>
@@ -27,7 +45,8 @@
     },
     data () {
       return {
-        added: false
+        added: false,
+        bio: false
       }
     },
     methods: {
@@ -36,6 +55,12 @@
           this.$emit('added', this.member.key);
         else
           this.$emit('removed', this.member.key);
+      },
+      showBio () {
+        this.bio = true;
+      },
+      hideBio () {
+        this.bio = false;
       }
     }
   }
@@ -46,7 +71,6 @@
     background-color: var(--green);
     background-position: top left;
     background-repeat: no-repeat;
-    background-size: cover;
     width: calc(25% - 0.75em);
     margin: 0 1em 1em 0;
     padding: 1em;
@@ -61,6 +85,7 @@
       box-shadow: inset 0 0 0 0.5em var(--green);
     }
     @media screen and (max-width: 1024px) {
+      background-size: cover;
       width: calc(50% - 0.5em);
       height: 15em;
       &:nth-child(4n) {
@@ -70,7 +95,7 @@
         margin-right: 0em;
       }
     }
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 400px) {
       width: calc(100%);
       margin: 0 0 1em;
     }
@@ -87,9 +112,18 @@
     margin: 0;
   }
 
-  .member__jobtitle {
+  .member__jobtitle,
+  .member__bio {
     margin: 0;
     font-size: 0.8em;
+  }
+
+  .member__open-bio {
+    color: var(--blue);
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .member__add {
@@ -124,5 +158,66 @@
     .member__add:checked + &:after {
       transform: translate(-50%, -50%) scale(1);
     }
+  }
+  .bio {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--green);
+      opacity: 0.7;
+    }
+    &.bio--show {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+  .bio__wrapper {
+    height: 50vh;
+    width: 50vw;
+    max-width: 75ch;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 50%;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    overflow: auto;
+    padding: 2em;
+    line-height: 1.6;
+  }
+
+  .bio__close {
+    position: absolute;
+    right: 2em;
+    top: 2em;
+    font-family: var(--title-font);
+    color: var(--blue);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .bio__name {
+    margin: 0;
+    font-size: 2em;
+    font-family: var(--title-font);
+    text-transform: uppercase;
+  }
+
+  .bio__meta {
+    margin: 0;
   }
 </style>

@@ -113,7 +113,7 @@
   }
 
   .member__jobtitle,
-  .member__bio {
+  .member__open-bio {
     margin: 0;
     font-size: 0.8em;
   }
